@@ -59,7 +59,7 @@ const App: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep} // key 很重要，它告诉 React 和 Framer Motion 何时重新渲染和执行动画
-            variants={fadeVariants} // 使用新的 fadeVariants
+            variants={fadeVariants} 
             initial="initial"
             animate="animate"
             exit="exit"
