@@ -23,7 +23,7 @@ export default defineConfig({
         },
         "default_title": "沉浸式预览 - AI 驱动的网页浏览体验",
       },
-      permissions: [],
+      permissions: ['storage'],
     }
     return manifest
   },
@@ -32,5 +32,6 @@ export default defineConfig({
     src: path.resolve(__dirname, "./entrypoints/"),
     "@entrypoints": path.resolve(__dirname, "./entrypoints"),
     "@components": path.resolve(__dirname, "./entrypoints/components"),
+    "@/src": path.resolve(__dirname, "./src"),
   }
 });

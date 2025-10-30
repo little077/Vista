@@ -77,7 +77,7 @@ console.log(themeId)
                   className={`
                     px-3 py-1.5 text-sm ${style.urlText}
                     ${style.urlBox} backdrop-blur-sm 
-                    rounded-lg shadow-sm
+                    rounded-lg shadow-sm 
                   `}
                   style={{
                     boxShadow: `

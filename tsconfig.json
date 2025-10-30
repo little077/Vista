@@ -5,7 +5,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["./entrypoints/components/*"]
+      "@components/*": ["./entrypoints/components/*"],
+      "@/src/*":["./src/*"]
     }
   }
 }
