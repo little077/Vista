@@ -6,7 +6,7 @@ interface ThemePreviewProps {
 }
 
 // 定义每个主题的预览样式
-const previewStyles: {
+export const previewStyles: {
   [key: string]: {
     bg: string;
     iconColor: string;
@@ -54,7 +54,6 @@ const previewStyles: {
 
 const ThemePreview: React.FC<ThemePreviewProps> = ({ themeId }) => {
   const style = previewStyles[themeId] || previewStyles.light;
-console.log(themeId)
   return (
     <div className="w-full flex h-full gap-2 items-center">
       <Toolbar themeId={themeId} />
@@ -136,9 +135,11 @@ console.log(themeId)
 
 export default ThemePreview;
 
-const Icon = ({ children }: { children?: React.ReactNode }) => {
+export const Icon = ({ children, onClick }: { children?: React.ReactNode, onClick?: () => void }) => {
   return (
-    <div className="size-6 flex items-center justify-center">
+    <div aria-label="true"
+      onClick={onClick}
+      className="size-[28px] flex cursor-pointer hover:bg-[rgba(0,0,0,.06)] rounded-[6px] items-center justify-center">
       {children}
     </div>
   );

@@ -1,6 +1,8 @@
-// src/components/Onboarding/Step1.tsx (替换您的原有文件)
 import React, { useState } from "react";
-import Button from "@components/Button"; // 请根据您的文件结构调整路径
+import Button from "@/components/base/Button"; // 请根据您的文件结构调整路径
+import { Behavior } from "@/src/storage/local-storage-schema";
+import { useAsyncEffect, useUpdateEffect } from "ahooks";
+import { LocalStorage } from "@/src/storage";
 
 interface Step1Props {
   onNext: () => void;
@@ -11,10 +13,9 @@ const config = {
   textSecondary: "text-slate-600",
 };
 
-// 包含全新设计的、更小巧精致的图标
 const options = [
   {
-    id: "drag",
+    id: Behavior.drag,
     title: "拖动打开",
     description: "将链接拖拽一小段距离即可预览。",
     icon: (
@@ -37,7 +38,7 @@ const options = [
     ),
   },
   {
-    id: "long-press",
+    id: Behavior.longPress,
     title: "长按打开",
     description: "在链接上长按鼠标来触发。",
     icon: (
@@ -61,7 +62,7 @@ const options = [
     ),
   },
   {
-    id: "alt-click",
+    id: Behavior.altClick,
     title: "Alt + 单击",
     description: "按住 Alt 键的同时，单击链接进行预览。",
     icon: (
@@ -85,7 +86,17 @@ const options = [
 ];
 
 const Step1: React.FC<Step1Props> = ({ onNext }) => {
-  const [selected, setSelected] = useState<string | null>("drag");
+  const [selected, setSelected] = useState<Behavior | null>();
+  useUpdateEffect(() => {
+    LocalStorage.setItem('behavior', selected as Behavior);
+  }, [selected])
+  useAsyncEffect(async () => {
+    const res = await LocalStorage.getItem('behavior');
+    if (res) {
+      setSelected(res);
+    }
+  }, [])
+
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4">

@@ -1,4 +1,3 @@
-// 推荐您将此组件保存为 `components/Button.tsx`
 import React from 'react';
 
 // 定义Props类型
